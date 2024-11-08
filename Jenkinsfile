@@ -4,9 +4,19 @@ pipeline {
         COMPOSE_FILE = 'C:\\ProgramData\\Jenkins\\.jenkins\\workspace\\ci-cd-pipeline\\docker-compose.yml'  // Full path to docker-compose.yml
     }
     stages {
+        stage('Clean Workspace') {
+            steps {
+                script {
+                    // Delete existing directories if they exist
+                    bat 'if exist C:\\ProgramData\\Jenkins\\.jenkins\\workspace\\ci-cd-pipeline\\microservice-1 rmdir /s /q C:\\ProgramData\\Jenkins\\.jenkins\\workspace\\ci-cd-pipeline\\microservice-1'
+                    bat 'if exist C:\\ProgramData\\Jenkins\\.jenkins\\workspace\\ci-cd-pipeline\\microservice-2 rmdir /s /q C:\\ProgramData\\Jenkins\\.jenkins\\workspace\\ci-cd-pipeline\\microservice-2'
+                }
+            }
+        }
         stage('Clone Repositories') {
             steps {
                 script {
+                    // Clone repositories after cleaning workspace
                     bat 'git clone https://github.com/kavin-t28/ms1.git C:\\ProgramData\\Jenkins\\.jenkins\\workspace\\ci-cd-pipeline\\microservice-1'
                     bat 'git clone https://github.com/kavin-t28/ms2.git C:\\ProgramData\\Jenkins\\.jenkins\\workspace\\ci-cd-pipeline\\microservice-2'
                 }
