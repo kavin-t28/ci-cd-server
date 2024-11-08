@@ -4,12 +4,19 @@ pipeline {
         COMPOSE_FILE = 'docker-compose.yml'
     }
     stages {
+        stage('Docker Login') {
+            steps {
+                script {
+                    // Docker login step to authenticate with Docker Hub
+                    bat 'docker login -u kavint28 -p kavinT@28'
+                }
+            }
+        }
         stage('Clone Repositories') {
             steps {
                 script {
-                    // Check if the directory exists, then clone
-                    bat 'if not exist microservice-1 (git clone https://github.com/your-org/microservice-1.git)'
-                    bat 'if not exist microservice-2 (git clone https://github.com/your-org/microservice-2.git)'
+                    bat 'git clone https://github.com/kavin-t28/microservice-1.git'
+                    bat 'git clone https://github.com/kavin-t28/microservice-2.git'
                 }
             }
         }
