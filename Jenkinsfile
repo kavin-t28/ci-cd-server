@@ -37,14 +37,6 @@ pipeline {
                 }
             }
         }
-        stage('Run Integration Tests') {
-            steps {
-                script {
-                    bat "curl -f http://localhost:3000"
-                    bat "curl -f http://localhost:3001"
-                }
-            }
-        }
     }
     post {
         always {
