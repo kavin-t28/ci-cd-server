@@ -25,8 +25,8 @@ pipeline {
         stage('Build Docker Images') {
             steps {
                 script {
-                    bat 'docker build -t service1-image .\\microservice-1'
-                    bat 'docker build -t service2-image .\\microservice-2'
+                    bat 'docker build -t service1-image C:\\Users\\SNUC\\Desktop\\ms1'
+                    bat 'docker build -t service2-image C:\\Users\\SNUC\\Desktop\\ms1'
                 }
             }
         }
