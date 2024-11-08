@@ -4,17 +4,19 @@ pipeline {
         COMPOSE_FILE = 'docker-compose.yml'
     }
     stages {
-        stage('Docker Login') {
+        stage('Clean Workspace') {
             steps {
                 script {
-                    // Docker login step to authenticate with Docker Hub
-                    bat 'docker login -u kavint28 -p dckr_pat_PYe0TpNGkeBE9ecTJ7wVpUEmv4E'
+                    // Clean up existing directories before cloning
+                    bat 'rmdir /s /q microservice-1'
+                    bat 'rmdir /s /q microservice-2'
                 }
             }
         }
         stage('Clone Repositories') {
             steps {
                 script {
+                    // Clone the repositories
                     bat 'git clone https://github.com/kavin-t28/microservice-1.git'
                     bat 'git clone https://github.com/kavin-t28/microservice-2.git'
                 }
