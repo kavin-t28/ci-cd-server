@@ -8,7 +8,7 @@ pipeline {
             steps {
                 script {
                     // Docker login step to authenticate with Docker Hub
-                    bat 'docker login -u kavint28 -p kavinT@28'
+                    bat 'docker login -u kavint28 -p dckr_pat_PYe0TpNGkeBE9ecTJ7wVpUEmv4E'
                 }
             }
         }
