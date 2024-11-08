@@ -1,21 +1,12 @@
-version: '3.8'
+# version: "3.8"  # Optional: Remove if using the latest Docker Compose
 services:
   service1:
     build:
-      context: ../microservice-1
+      context: ./microservice-1  # Relative path to ms1 folder
     ports:
       - "3000:3000"
-    networks:
-      - app-network
-
   service2:
     build:
-      context: ../microservice-2
+      context: ./microservice-2  # Relative path to ms2 folder
     ports:
       - "3001:3001"
-    networks:
-      - app-network
-
-networks:
-  app-network:
-    driver: bridge
