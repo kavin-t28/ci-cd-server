@@ -7,23 +7,25 @@ pipeline {
         stage('Clone Repositories') {
             steps {
                 script {
-                    // Clone each microservice repository
-                    bat 'git clone https://github.com/kavin-t28/microservice-1.git'
-                    bat 'git clone https://github.com/kavin-t28/microservice-2.git'
+                    // Adjust the paths for where the repositories are located
+                    bat 'git clone https://github.com/your-org/microservice-1.git'
+                    bat 'git clone https://github.com/your-org/microservice-2.git'
                 }
             }
         }
         stage('Build Docker Images') {
             steps {
                 script {
-                    bat 'docker build -t service1-image .\\service1-repo'
-                    bat 'docker build -t service2-image .\\service2-repo'
+                    // Adjust paths to match the cloned directories under Jenkins workspace
+                    bat 'docker build -t service1-image .\\microservice1'
+                    bat 'docker build -t service2-image .\\microservice2'
                 }
             }
         }
         stage('Start Services with Docker Compose') {
             steps {
                 script {
+                    // Make sure the docker-compose.yml is in the correct location
                     bat "docker-compose -f ${COMPOSE_FILE} up -d"
                 }
             }
@@ -31,7 +33,7 @@ pipeline {
         stage('Run Integration Tests') {
             steps {
                 script {
-                    // Example integration test commands for each service
+                    // Ensure your services are available on these ports
                     bat "curl -f http://localhost:3000"
                     bat "curl -f http://localhost:3001"
                 }
