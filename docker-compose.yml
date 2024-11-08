@@ -1,0 +1,21 @@
+version: '3.8'
+services:
+  service1:
+    build:
+      context: ../microservice-1
+    ports:
+      - "3000:3000"
+    networks:
+      - app-network
+
+  service2:
+    build:
+      context: ../microservice-2
+    ports:
+      - "3001:3001"
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    driver: bridge
